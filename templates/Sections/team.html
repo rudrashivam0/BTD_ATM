@@ -1,0 +1,268 @@
+<section id="team" class="team-section">
+  <!-- Background effects -->
+  <div class="team-orb orb-purple"></div>
+  <div class="team-orb orb-blue"></div>
+
+  <div class="team-container">
+
+    <!-- HEADER -->
+    <div class="team-header reveal">
+      <span class="team-label">OUR TEAM</span>
+      <h2>Built by passionate researchers & developers</h2>
+      <p>
+        A multidisciplinary team combining machine learning, backend engineering,
+        and modern UI/UX design for medical AI systems.
+      </p>
+    </div>
+
+    <!-- GRID -->
+    <div class="team-grid">
+
+      <div class="team-card reveal">
+        <div class="avatar-ring">
+          <div class="team-avatar">🧠</div>
+        </div>
+        <h4>Sahil Sharma</h4>
+        <span class="role">Machine Learning Engineer</span>
+        <p>
+          Specializes in deep learning architectures, CNNs, and attention mechanisms
+          for medical image analysis.
+        </p>
+      </div>
+
+      <div class="team-card reveal delay-1">
+        <div class="avatar-ring">
+          <div class="team-avatar">⚙️</div>
+        </div>
+        <h4>Shivam Sharma</h4>
+        <span class="role">Backend & Model Integration</span>
+        <p>
+          Handles Flask APIs, model inference pipelines, and optimized deployment
+          of deep learning models.
+        </p>
+      </div>
+
+      <div class="team-card reveal delay-2">
+        <div class="avatar-ring">
+          <div class="team-avatar">🎨</div>
+        </div>
+        <h4>Sajagata </h4>
+        <span class="role">Frontend & UX Designer</span>
+        <p>
+          Crafts clean, research-focused interfaces emphasizing clarity,
+          usability, and modern interaction design.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<style>
+
+.team-section {
+  position: relative;
+  padding: clamp(120px, 12vw, 160px) 6vw;
+  background: linear-gradient(180deg, #ffffff, #f1f5f9);
+  overflow: hidden;
+}
+
+/* Background Orbs */
+.team-orb {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.35;
+  animation: float 14s infinite alternate ease-in-out;
+}
+
+.orb-purple {
+  background: #7c3aed;
+  top: -120px;
+  left: -140px;
+}
+
+.orb-blue {
+  background: #38bdf8;
+  bottom: -120px;
+  right: -140px;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(40px) translateX(30px);
+  }
+}
+
+/* Container */
+.team-container {
+  max-width: 1300px;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Header */
+.team-header {
+  max-width: 640px;
+  margin-bottom: 90px;
+}
+
+.team-label {
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.team-header h2 {
+  margin-top: 18px;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: #020617;
+}
+
+.team-header p {
+  margin-top: 18px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #475569;
+}
+
+/* Grid */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 48px;
+}
+
+/* Card */
+.team-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(14px);
+  border-radius: 30px;
+  padding: 46px 36px;
+  box-shadow:
+    0 25px 50px rgba(2, 6, 23, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Gradient shine */
+.team-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  background: linear-gradient(
+    120deg,
+    rgba(124,58,237,0.15),
+    rgba(56,189,248,0.15),
+    rgba(236,72,153,0.15)
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-12px);
+  box-shadow:
+    0 45px 90px rgba(2,6,23,0.22);
+}
+
+.team-card:hover::before {
+  opacity: 1;
+}
+
+/* Avatar */
+.avatar-ring {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c3aed, #38bdf8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+  box-shadow: 0 12px 30px rgba(124,58,237,0.35);
+}
+
+.team-avatar {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+}
+
+/* Text */
+.team-card h4 {
+  margin-bottom: 6px;
+  font-weight: 700;
+  color: #020617;
+}
+
+.role {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-bottom: 18px;
+  display: block;
+}
+
+.team-card p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #475569;
+}
+
+/* Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px) scale(0.97);
+  transition: all 0.8s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.delay-1 { transition-delay: 0.15s; }
+.delay-2 { transition-delay: 0.3s; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .team-header {
+    margin-bottom: 70px;
+  }
+}
+
+</style>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const reveals = document.querySelectorAll(".reveal");
+  
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+  
+    reveals.forEach(el => observer.observe(el));
+  });
+  </script>
+  

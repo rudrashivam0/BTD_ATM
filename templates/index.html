@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NeuroScan AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: "Inter", sans-serif;
+    }
+
+    /* Offset for fixed navbar */
+    section {
+      scroll-margin-top: 120px;
+    }
+  </style>
+</head>
+
+<body>
+
+  {% include "Sections/Nav.html" %}
+  {% include "Sections/hero.html" %}
+  {% include "Sections/about.html" %}
+  {% include "Sections/detection.html" %}
+  {% include "Sections/brain_health.html" %}
+  {% include "Sections/tumor_types.html" %}
+  {% include "Sections/cta.html" %}
+  {% include "Sections/team.html" %}
+  {% include "Sections/footer.html" %}
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<section id="types" class="tumor-section">
+  <div class="tumor-container">
+
+    <!-- HEADER -->
+    <div class="tumor-header">
+      <span class="tumor-label">BRAIN TUMOR CLASSIFICATION</span>
+      <h2>
+        Beyond detection, the model identifies
+        <span>multiple brain tumor categories</span>
+      </h2>
+      <p>
+        Using multi-class deep learning, the system differentiates between
+        common tumor types and healthy brain scans based on MRI features.
+      </p>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="tumor-content">
+
+      <!-- IMAGE -->
+      <div class="tumor-visual">
+        <img id="tumorImage"
+          src="https://www.aaroncohen-gadol.com/images/jcogs_img/cache/glioma-article-1-fig-1_-_28de80_-_088977db6e7c7cc5eec1115afc4180e89ab7966b.png"
+          alt="Brain MRI Tumor Type">
+      </div>
+
+      <!-- INFO -->
+      <div class="tumor-info">
+        <ul>
+          <li class="active">Glioma</li>
+          <li>Meningioma</li>
+          <li>Pituitary Tumor</li>
+          <li>Healthy Brain</li>
+        </ul>
+
+        <p id="tumorDescription">
+          Gliomas arise from glial cells and represent one of the most aggressive
+          and common malignant brain tumors, requiring early and accurate
+          classification.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STYLES ===================== -->
+<style>
+/* ===== TUMOR TYPES SECTION ===== */
+.tumor-section {
+  padding: clamp(100px, 12vw, 160px) 6vw;
+  background: linear-gradient(180deg, #f8fafc, #eef2f7);
+}
+
+.tumor-container {
+  max-width: 1300px;
+  margin: auto;
+}
+
+/* HEADER */
+.tumor-header {
+  max-width: 900px;
+  margin-bottom: 80px;
+}
+
+.tumor-label {
+  font-size: 0.8rem;
+  letter-spacing: 2.5px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.tumor-header h2 {
+  margin-top: 18px;
+  font-size: clamp(2.1rem, 4vw, 3.1rem);
+  font-weight: 800;
+  color: #020617;
+  line-height: 1.2;
+}
+
+.tumor-header h2 span {
+  background: linear-gradient(90deg, #7c3aed, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tumor-header p {
+  margin-top: 20px;
+  max-width: 640px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #475569;
+}
+
+/* CONTENT LAYOUT */
+.tumor-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* IMAGE */
+.tumor-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.tumor-visual img {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 28px;
+  box-shadow: 0 40px 90px rgba(124,58,237,0.25);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* INFO */
+.tumor-info ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 28px;
+}
+
+.tumor-info li {
+  font-size: 1.2rem;
+  color: #64748b;
+  padding: 14px 0;
+  cursor: default;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.tumor-info li.active {
+  color: #020617;
+  font-weight: 600;
+}
+
+.tumor-info li.active::before {
+  content: "";
+  position: absolute;
+  left: -24px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  background: #ec4899;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.tumor-info p {
+  max-width: 440px;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #475569;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .tumor-content {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .tumor-info li.active::before {
+    left: -18px;
+  }
+}
+</style>
+
+<!-- ===================== SCRIPT ===================== -->
+<script>
+const tumorData = [
+  {
+    name: "Glioma",
+    img: "https://www.aaroncohen-gadol.com/images/jcogs_img/cache/glioma-article-1-fig-1_-_28de80_-_088977db6e7c7cc5eec1115afc4180e89ab7966b.png",
+    desc: "Gliomas arise from glial cells and represent one of the most aggressive and common malignant brain tumors, requiring early and accurate classification."
+  },
+  {
+    name: "Meningioma",
+    img: "https://www.mayoclinic.org/-/media/kcms/gbs/patient-consumer/images/2013/08/26/11/03/ds00901_im03177_r7_meningesthu_jpg.jpg",
+    desc: "Meningiomas develop from the meninges surrounding the brain and spinal cord. They are often benign but require accurate identification."
+  },
+  {
+    name: "Pituitary Tumor",
+    img: "https://www.cancer.org/adobe/dynamicmedia/deliver/dm-aid--adba1e44-0f3e-44c0-b4cc-91be92c31a29/pituitary.gif?preferwebp=true&quality=82",
+    desc: "Pituitary tumors affect the pituitary gland and may disrupt hormone regulation, making precise MRI analysis essential."
+  },
+  {
+    name: "Healthy Brain",
+    img: "https://www.mayoclinic.org/-/media/kcms/gbs/patient-consumer/images/2023/02/01/20/24/healthy-brain-and-brain-with-alzheimers-8-col-3398230-002-0.jpg",
+    desc: "Healthy brain scans show normal anatomical structure with no abnormal mass or tumor presence."
+  }
+];
+
+let currentIndex = 0;
+const imageEl = document.getElementById("tumorImage");
+const descEl = document.getElementById("tumorDescription");
+const items = document.querySelectorAll(".tumor-info li");
+
+setInterval(() => {
+  currentIndex = (currentIndex + 1) % tumorData.length;
+
+  imageEl.style.opacity = 0;
+  setTimeout(() => {
+    imageEl.src = tumorData[currentIndex].img;
+    imageEl.style.opacity = 1;
+  }, 300);
+
+  descEl.textContent = tumorData[currentIndex].desc;
+
+  items.forEach((item, index) => {
+    item.classList.toggle("active", index === currentIndex);
+  });
+}, 4500);
+</script>

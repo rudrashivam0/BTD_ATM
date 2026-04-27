@@ -1,0 +1,225 @@
+<nav class="biotech-navbar" id="navbar">
+  <div class="nav-left">
+    <div class="logo-badge"></div>
+    <span class="brand-name">NeuroScan AI</span>
+  </div>
+
+  <div class="nav-right" id="navMenu">
+    <a href="#about" class="nav-link">About</a>
+    <a href="#detect" class="nav-link">Detection</a>
+    <a href="#types" class="nav-link">Tumor Types</a>
+    <a href="#brain-health" class="nav-link">Brain Health</a>
+    <a href="#team" class="nav-link">Team</a>
+  </div>
+
+  <!-- MOBILE TOGGLE -->
+  <div class="nav-toggle" onclick="toggleNav()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+
+<style>
+  :root {
+  --primary: #2563eb;
+  --accent: #38bdf8;
+  --dark: #020617;
+}
+
+/* NAVBAR */
+.biotech-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 18px clamp(20px, 6vw, 60px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  background: rgba(248,250,252,0.7);
+  backdrop-filter: blur(16px);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+/* SCROLL SHADOW */
+.biotech-navbar.scrolled {
+  box-shadow: 0 20px 40px rgba(2,6,23,0.15);
+  background: rgba(248,250,252,0.92);
+}
+
+/* LEFT */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* LOGO */
+.logo-badge {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow: 0 0 18px rgba(56,189,248,0.7);
+  animation: pulse 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 18px rgba(56,189,248,0.6); }
+  50% { box-shadow: 0 0 26px rgba(56,189,248,0.9); }
+}
+
+.brand-name {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--dark);
+}
+
+/* NAV LINKS */
+.nav-right {
+  display: flex;
+  gap: 36px;
+}
+
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  font-size: 0.95rem;
+  color: #475569;
+  font-weight: 500;
+  padding: 4px 0;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--dark);
+  font-weight: 600;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* MOBILE */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  width: 26px;
+  height: 2px;
+  background: var(--dark);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-right {
+    position: absolute;
+    top: 100%;
+    right: 24px;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(14px);
+    border-radius: 18px;
+    padding: 24px;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: 0 30px 60px rgba(2,6,23,0.18);
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.35s ease;
+  }
+
+  .nav-right.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+</style>
+
+<script>
+  const navbar = document.getElementById("navbar");
+  const navLinks = document.querySelectorAll(".nav-link");
+  const navMenu = document.getElementById("navMenu");
+  
+  /* SCROLL EFFECT + ACTIVE LINK */
+  window.addEventListener("scroll", () => {
+    navbar.classList.toggle("scrolled", window.scrollY > 10);
+  
+    let currentSection = "";
+  
+    document.querySelectorAll("section[id]").forEach(section => {
+      const sectionTop = section.offsetTop - 140;
+      const sectionHeight = section.offsetHeight;
+  
+      if (
+        window.scrollY >= sectionTop &&
+        window.scrollY < sectionTop + sectionHeight
+      ) {
+        currentSection = section.getAttribute("id");
+      }
+    });
+  
+    navLinks.forEach(link => {
+      link.classList.toggle(
+        "active",
+        link.getAttribute("href") === `#${currentSection}`
+      );
+    });
+  });
+  
+  /* MOBILE TOGGLE */
+  function toggleNav() {
+    navMenu.classList.toggle("open");
+  }
+  
+  /* CLOSE MENU ON LINK CLICK (MOBILE UX) */
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      navMenu.classList.remove("open");
+    });
+  });
+
+
+  
+document.addEventListener("DOMContentLoaded", () => {
+  {% if result %}
+    const detectSection = document.getElementById("detect");
+    const detectLink = document.querySelector('a[href="#detect"]');
+
+    if (detectSection) {
+      setTimeout(() => {
+        detectSection.scrollIntoView({ behavior: "smooth" });
+        if (detectLink) detectLink.classList.add("flash");
+      }, 300);
+    }
+  {% endif %}
+});
+
+
+  </script>
+  

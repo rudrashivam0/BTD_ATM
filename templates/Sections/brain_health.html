@@ -1,0 +1,314 @@
+<section id="brain-health" class="brain-health">
+    <div class="bh-bg-orb orb-1"></div>
+    <div class="bh-bg-orb orb-2"></div>
+  
+    <div class="bh-container reveal">
+  
+      <!-- HEADER -->
+      <div class="bh-header">
+        <span class="bh-label">BRAIN WELLNESS</span>
+        <h2>
+          Building a
+          <span class="gradient-text">Healthier Brain</span>
+          for Life
+        </h2>
+        <p>
+          Brain health is not only about diagnosis. Lifestyle, habits, and daily
+          decisions play a critical role in prevention, recovery, and long-term
+          cognitive resilience.
+        </p>
+      </div>
+  
+      <!-- INTERACTIVE PANEL -->
+      <div class="bh-panel">
+  
+        <!-- LEFT MENU -->
+        <div class="bh-menu">
+          <button class="bh-tab active" data-topic="mind">🧘 Mental Wellness</button>
+          <button class="bh-tab" data-topic="diet">🥗 Brain Nutrition</button>
+          <button class="bh-tab" data-topic="exercise">🏃 Physical Activity</button>
+          <button class="bh-tab" data-topic="sleep">😴 Quality Sleep</button>
+          <button class="bh-tab" data-topic="learn">🧠 Cognitive Growth</button>
+          <button class="bh-tab" data-topic="habits">🚭 Healthy Habits</button>
+        </div>
+  
+        <!-- RIGHT CONTENT -->
+        <div class="bh-content">
+  
+          <div class="bh-topic active" id="mind">
+            <h3>Mental Wellness</h3>
+            <p>
+              Chronic stress negatively impacts brain structure and memory.
+              Mindfulness, meditation, and emotional regulation help reduce
+              cortisol levels and strengthen neural pathways.
+            </p>
+            <ul>
+              <li>Daily mindfulness practice</li>
+              <li>Stress management techniques</li>
+              <li>Emotional balance & calm focus</li>
+            </ul>
+          </div>
+  
+          <div class="bh-topic" id="diet">
+            <h3>Brain-Healthy Nutrition</h3>
+            <p>
+              Nutrition fuels cognition. Antioxidants and omega-3 fatty acids
+              protect neurons and reduce inflammation.
+            </p>
+            <ul>
+              <li>Fruits & leafy vegetables</li>
+              <li>Omega-3 rich foods</li>
+              <li>Low sugar & processed intake</li>
+            </ul>
+          </div>
+  
+          <div class="bh-topic" id="exercise">
+            <h3>Physical Activity</h3>
+            <p>
+              Exercise boosts blood flow and oxygen delivery to the brain,
+              stimulating neuron growth and memory formation.
+            </p>
+            <ul>
+              <li>30 minutes daily movement</li>
+              <li>Aerobic & balance exercises</li>
+              <li>Improved focus & mood</li>
+            </ul>
+          </div>
+  
+          <div class="bh-topic" id="sleep">
+            <h3>Quality Sleep</h3>
+            <p>
+              Sleep enables brain detoxification, memory consolidation,
+              and emotional regulation.
+            </p>
+            <ul>
+              <li>7–9 hours nightly sleep</li>
+              <li>Consistent sleep schedule</li>
+              <li>Reduced screen exposure</li>
+            </ul>
+          </div>
+  
+          <div class="bh-topic" id="learn">
+            <h3>Cognitive Stimulation</h3>
+            <p>
+              Learning strengthens neural plasticity and delays cognitive decline.
+            </p>
+            <ul>
+              <li>Reading & problem-solving</li>
+              <li>Learning new skills</li>
+              <li>Creative thinking activities</li>
+            </ul>
+          </div>
+  
+          <div class="bh-topic" id="habits">
+            <h3>Healthy Habits</h3>
+            <p>
+              Avoiding harmful habits protects long-term brain health and function.
+            </p>
+            <ul>
+              <li>No smoking</li>
+              <li>Moderate alcohol intake</li>
+              <li>Digital detox breaks</li>
+            </ul>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <style>
+    .brain-health{
+  position: relative;
+  min-height: 100vh;
+  padding: 120px 8%;
+  background: linear-gradient(180deg,#f8fbff,#eef3ff);
+  overflow: hidden;
+}
+
+/* Floating Gradient Orbs */
+.bh-bg-orb{
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.35;
+  animation: float 12s infinite alternate ease-in-out;
+}
+
+.orb-1{
+  background: #7f5cff;
+  top: -120px;
+  left: -120px;
+}
+
+.orb-2{
+  background: #38bdf8;
+  bottom: -120px;
+  right: -120px;
+}
+
+@keyframes float{
+  to { transform: translateY(40px) translateX(30px); }
+}
+
+/* Container */
+.bh-container{
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Header */
+.bh-header{
+  max-width: 680px;
+  margin-bottom: 70px;
+}
+
+.bh-label{
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #6c7cff;
+  font-weight: 600;
+}
+
+.bh-header h2{
+  font-size: clamp(32px,4vw,46px);
+  margin: 15px 0;
+  color: #0b1324;
+}
+
+.gradient-text{
+  background: linear-gradient(90deg,#7f5cff,#ff5ea8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bh-header p{
+  color: #5a637a;
+}
+
+/* Panel */
+.bh-panel{
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(18px);
+  border-radius: 28px;
+  padding: 40px;
+  box-shadow: 0 40px 80px rgba(31,38,135,0.2);
+}
+
+/* Menu */
+.bh-menu{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bh-tab{
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.bh-tab:hover,
+.bh-tab.active{
+  background: linear-gradient(90deg,#7f5cff,#38bdf8);
+  color: #fff;
+}
+
+/* Content */
+.bh-content{
+  position: relative;
+}
+
+.bh-topic{
+  display: none;
+  animation: fadeSlide 0.5s ease;
+}
+
+.bh-topic.active{
+  display: block;
+}
+
+.bh-topic h3{
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.bh-topic p{
+  color: #475569;
+  margin-bottom: 16px;
+}
+
+.bh-topic ul{
+  padding-left: 18px;
+  color: #475569;
+}
+
+@keyframes fadeSlide{
+  from{ opacity:0; transform: translateY(10px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+
+/* Reveal */
+.reveal{
+  opacity:0;
+  transform: translateY(40px);
+  transition: 0.8s ease;
+}
+
+.reveal.show{
+  opacity:1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media(max-width:900px){
+  .bh-panel{
+    grid-template-columns: 1fr;
+  }
+}
+
+  </style>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    
+      // Reveal
+      const reveal = document.querySelector(".reveal");
+      const observer = new IntersectionObserver(
+        ([entry]) => entry.isIntersecting && reveal.classList.add("show"),
+        { threshold: 0.2 }
+      );
+      observer.observe(reveal);
+    
+      // Tabs
+      const tabs = document.querySelectorAll(".bh-tab");
+      const topics = document.querySelectorAll(".bh-topic");
+    
+      tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          tabs.forEach(t => t.classList.remove("active"));
+          topics.forEach(c => c.classList.remove("active"));
+    
+          tab.classList.add("active");
+          document.getElementById(tab.dataset.topic).classList.add("active");
+        });
+      });
+    
+    });
+    </script>
+    

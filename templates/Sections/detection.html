@@ -1,0 +1,351 @@
+<section id="detect" class="detect-section">
+  <div class="detect-container">
+
+    <!-- HEADER -->
+    <div class="detect-header">
+      <h2 class="detect-title">AI Brain Tumor Detection</h2>
+      <p class="detect-subtitle">
+        Upload a brain MRI scan and analyze potential tumor presence using
+        a deep learning model trained on medical imaging datasets.
+      </p>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div class="disclaimer">
+      ⚠️ Experimental system trained on a <strong>limited dataset</strong>.
+      Results are <u>not for clinical diagnosis</u>.
+    </div>
+
+    <!-- MAIN WRAPPER -->
+    <div class="detect-wrapper">
+      <div class="detect-grid">
+
+        <!-- INPUT CARD -->
+        <div class="detect-card input-card">
+          <h5>Input MRI Scan</h5>
+          <div class="detect-divider"></div>
+
+          <p class="input-description">
+            The AI evaluates spatial textures and intensity patterns
+            across MRI scans to estimate tumor likelihood.
+          </p>
+
+          <ul class="input-info">
+            <li>✔ JPG / PNG</li>
+            <li>✔ T1, T2, FLAIR</li>
+            <li>✔ No data stored</li>
+          </ul>
+
+          <div class="preview-wrapper">
+            <img id="previewImage" alt="MRI Preview">
+            <span>MRI Preview</span>
+          </div>
+
+          <form method="POST" enctype="multipart/form-data" id="detectForm">
+            <label class="form-label">Select MRI Image</label>
+            <input type="file" name="file" class="form-control"
+              accept="image/*" required onchange="previewFile(event)">
+            <button type="submit" class="glow-btn">
+              <span>Run Tumor Detection</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- OUTPUT CARD -->
+        <div class="detect-card output-card" id="outputCard">
+
+          <!-- LOADER -->
+          <div class="card-loader hidden" id="cardLoader">
+            <div class="spinner"></div>
+            <p>Analyzing MRI scan…</p>
+          </div>
+
+          <h5>Model Output</h5>
+          <div class="detect-divider"></div>
+
+          {% if result %}
+          <div class="output-scroll">
+            <div class="output-image">
+              <img src="{{ file_path }}" alt="MRI Result">
+            </div>
+
+            <div class="output-data">
+              <div class="output-row">
+                <span>Prediction</span>
+                <strong>{{ result }}</strong>
+              </div>
+              <div class="output-row">
+                <span>Confidence</span>
+                <strong>{{ confidence }}</strong>
+              </div>
+            </div>
+
+            <div class="alert-box">
+              ⚠️ Validate with clinical expertise.
+            </div>
+
+            <div class="prescription-box">
+              <h6>Suggested Actions</h6>
+              <ul>
+                <li>Consult a radiologist</li>
+                <li>Cross-check reports</li>
+                <li>Use as decision support</li>
+              </ul>
+            </div>
+          </div>
+          {% else %}
+          <p class="center-text">Upload an MRI image to view prediction.</p>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<style>
+  :root {
+  --primary: #38bdf8;
+  --secondary: #2563eb;
+  --bg-soft: #f8fafc;
+}
+
+/* ================= SECTION ================= */
+.detect-section {
+  min-height: 100vh;
+  padding: 90px 4vw 40px;
+  background: radial-gradient(circle at top, #f8fafc, #e2e8f0);
+  display: flex;
+  align-items: center;
+}
+
+.detect-container {
+  width: 100%;
+  max-width: 1320px;
+  margin: auto;
+}
+
+/* ================= HEADER ================= */
+.detect-header {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.detect-title {
+  font-size: clamp(1.9rem, 3vw, 2.3rem);
+  font-weight: 800;
+}
+
+.detect-subtitle {
+  max-width: 680px;
+  margin: 10px auto 0;
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+/* ================= DISCLAIMER ================= */
+.disclaimer {
+  max-width: 880px;
+  margin: 0 auto 22px;
+  padding: 12px 18px;
+  background: rgba(37,99,235,0.08);
+  border-left: 4px solid var(--secondary);
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+/* ================= WRAPPER ================= */
+.detect-wrapper {
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(14px);
+  border-radius: 26px;
+  padding: 26px;
+  box-shadow: 0 30px 60px rgba(2,6,23,0.16);
+}
+
+/* ================= GRID ================= */
+.detect-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 26px;
+  align-items: stretch;
+}
+
+/* ================= CARD ================= */
+.detect-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 24px 26px;
+  box-shadow: 0 20px 40px rgba(2,6,23,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* Keep cards equal height */
+.input-card,
+.output-card {
+  min-height: 420px;
+}
+
+/* ================= DIVIDER ================= */
+.detect-divider {
+  width: 44px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--secondary), var(--primary));
+  margin: 12px 0 16px;
+  border-radius: 20px;
+}
+
+/* ================= INPUT ================= */
+.input-description {
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.input-info {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 12px 0;
+}
+
+/* ================= PREVIEW ================= */
+.preview-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.preview-wrapper img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid var(--primary);
+  display: none;
+}
+
+/* ================= BUTTON ================= */
+.glow-btn {
+  width: 100%;
+  padding: 13px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* ================= OUTPUT ================= */
+.output-image img {
+  width: 68%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 14px;
+}
+
+.output-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.output-row strong {
+  color: var(--secondary);
+}
+
+/* ================= ALERT ================= */
+.alert-box {
+  margin-top: 14px;
+  padding: 10px;
+  background: #fff7ed;
+  border-left: 4px solid #fb923c;
+  border-radius: 10px;
+  font-size: 0.85rem;
+}
+
+/* ================= LOADER ================= */
+.card-loader {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.88);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 22px;
+  z-index: 5;
+}
+
+.spinner {
+  width: 42px;
+  height: 42px;
+  border: 5px solid #e5e7eb;
+  border-top: 5px solid var(--secondary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.hidden { display: none; }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ================= CENTER TEXT ================= */
+.center-text {
+  text-align: center;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .detect-section {
+    min-height: auto;
+    padding: 80px 5vw;
+  }
+
+  .detect-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .input-card,
+  .output-card {
+    min-height: auto;
+  }
+}
+
+</style>
+
+<script>
+  function previewFile(event) {
+    const img = document.getElementById("previewImage");
+    img.src = URL.createObjectURL(event.target.files[0]);
+    img.style.display = "block";
+  }
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("detectForm");
+    const loader = document.getElementById("cardLoader");
+    const output = document.getElementById("outputCard");
+  
+    if (form) {
+      form.addEventListener("submit", () => {
+        loader.classList.remove("hidden");
+        output.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    }
+  
+    {% if result %}
+      output.scrollIntoView({ behavior: "smooth", block: "center" });
+    {% endif %}
+  });
+  </script>
+  
